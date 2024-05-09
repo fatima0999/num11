@@ -1,0 +1,77 @@
+.interaction {
+    /* height: 100vh; */
+    display: flex; /* Muestra los elementos como una fila flex */
+}
+
+.memory-game {
+    width: 640px; /* Ancho de la sección del juego de memoria */
+    /* height: 640px; */
+    margin: auto; /* Centra el juego horizontalmente */
+    display: flex; /* Muestra los elementos del juego como una fila flex */
+    flex-wrap: wrap; /* Permite que los elementos del juego se envuelvan cuando no caben en una sola fila */
+    perspective: 1000px; /* Establece la perspectiva para el efecto 3D */
+    -webkit-perspective: 1000px;
+    -o-perspective: 1000px;
+    -moz-perspective: 1000px;
+}
+
+.memory-card {
+    width: calc(25% - 10px); /* Ancho de cada tarjeta de memoria */
+    /* height: calc(33.333% - 10px); */
+    height: 300px; /* Altura de cada tarjeta de memoria */
+    margin: 5px; /* Margen entre las tarjetas */
+    position: relative; /* Establece la posición relativa para el posicionamiento de elementos secundarios */
+    transform: scale(1); /* Establece la escala inicial de la tarjeta */
+    transform-style: preserve-3d; /* Define cómo se aplican las transformaciones 3D a los elementos secundarios */
+    transition: transform .5s; /* Transición suave al cambiar la transformación */
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 0.5s;
+    -o-transform-style: preserve-3d;
+    -o-transition: -o-transform 0.5s;
+    -moz-transform-style: preserve-3d;
+    -moz-transition: -moz-transform 0.5s;
+    /* box-shadow: 1px 1px 1px rgba(0,0,0,.3); */
+}
+
+@media (max-width: 767.98px) {
+    .memory-card {
+        width: calc(33.333% - 10px); /* Ancho de la tarjeta de memoria en dispositivos móviles */
+    }
+}
+
+.memory-card:active {
+    transform: scale(0.97); /* Efecto de escala al hacer clic en la tarjeta */
+    -webkit-transition: -webkit-transform 0.2s;
+    -o-transition: -o-transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    transition: transform .2s;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg); /* Gira la tarjeta 180 grados sobre el eje Y */
+}
+
+.front-face,
+.back-face {
+    width: 100%; /* Ancho de la cara frontal y trasera de la tarjeta */
+    /* height: 100%; */
+    height: auto; /* Altura automática para ajustarse al contenido */
+    padding: 4px; /* Relleno interno de la cara de la tarjeta */
+    position: absolute; /* Establece la posición absoluta para superponer las caras de la tarjeta */
+    border-radius: 5px; /* Borde redondeado de las caras de la tarjeta */
+    background: #0f4c88; /* Fondo de las caras de la tarjeta */
+    backface-visibility: hidden; /* Oculta la cara trasera durante la animación */
+    -webkit-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+.front-face {
+    transform: rotateY(180deg); /* Gira la cara frontal 180 grados sobre el eje Y */
+}
+
+.memory-card:after {
+    content: ""; /* Contenido generado después de la tarjeta */
+    display: block; /* Muestra el contenido como un bloque */
+    padding-bottom: 100%; /* Relación de aspecto para mantener el cuadro */
+}
